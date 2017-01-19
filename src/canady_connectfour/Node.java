@@ -8,7 +8,7 @@ public class Node {
     int v;
     
     Node() {
-        
+       v = 0; 
     }
 
     public void setUl(Node ul) {

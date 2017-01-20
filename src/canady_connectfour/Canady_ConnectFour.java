@@ -104,6 +104,7 @@ public class Canady_ConnectFour {
         for (int i = h - 1; i >= 0; i--) {
             if (a[i][col].v == 0) {
                 a[i][col].setV(p);
+                checkWin(i, col);
                 return true;
             } else if (i == 0) {
                 return false;
@@ -133,7 +134,14 @@ public class Canady_ConnectFour {
     }
 
     public static void checkWin(int i, int j) {
-
+        int place = 0;
+        for (int c = 0; c < w; c++) { //left to right
+            if (a[i][j].r.v == a[i][j].v) {
+                place++;
+            } else {
+                place = 0;
+            }
+        }
     }
 
 }

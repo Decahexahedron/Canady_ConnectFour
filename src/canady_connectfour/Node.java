@@ -6,9 +6,18 @@ public class Node {
     Node l, r;
     Node dl, d, dr;
     int v;
-    
+
+    @Override
+    public String toString() {
+        return "Node{" + "ul=" + ul + ", u=" + u + ", ur=" + ur + ", l=" + l + ", r=" + r + ", dl=" + dl + ", d=" + d + ", dr=" + dr + '}';
+    }
+
     Node() {
-       v = 0; 
+        v = 0;
+    }
+
+    public void setV(int v) {
+        this.v = v;
     }
 
     public void setUl(Node ul) {

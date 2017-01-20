@@ -33,14 +33,18 @@ public class Canady_ConnectFour {
     public static void main(String[] args) {
         init();
         print();
+        input();
     }
 
     public static void init() {
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                a[i][j] = new Node();
+            }
+        }
         for (int i = 0; i < h; i++) { //height outer
             for (int j = 0; j < w; j++) { //width outer
-                a[i][j] = new Node();
                 boolean up = false, down = false, left = false, right = false;
-
                 if (i < h - 1) { //if not bottom
                     down = true;
                     a[i][j].setD(a[i + 1][j]);
@@ -79,32 +83,57 @@ public class Canady_ConnectFour {
                 if (a[i][j].v == 0) {
                     System.out.print("○ ");
                 } else if (a[i][j].v == 1) {
-                    System.out.print(ANSI_BLUE + "⬤ ");
+                    System.out.print(ANSI_BLUE + "⬤ " + ANSI_RESET);
                 } else if (a[i][j].v == 2) {
-                    System.out.print(ANSI_RED + "⬤ ");
+                    System.out.print(ANSI_RED + "⬤ " + ANSI_RESET);
                 }
             }
             System.out.println("");
         }
     }
 
+    public static void debugPrint() {
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                System.out.println(a[i][j].toString());
+            }
+        }
+    }
+
+    public static boolean place(int p, int col) {
+        for (int i = h - 1; i >= 0; i--) {
+            if (a[i][col].v == 0) {
+                a[i][col].setV(p);
+                return true;
+            } else if (i == 0) {
+                return false;
+            }
+        }
+        return false;
+    }
+
     public static void input() {
-        int c = 1;
+        int c = 0;
         int p;
         int col;
         while (play) {
             p = (c % 2) + 1;
             Scanner s = new Scanner(System.in);
             String input;
-            System.out.print("Player" + p + ", please enter your column: ");
+            System.out.print("Player " + p + ", please enter your column: ");
             input = s.nextLine();
             col = Integer.parseInt(input) - 1;
-            if (col >= 0 && col < w) {
+            if (col >= 0 && col < w && place(p, col)) {
                 c++;
+                print();
             } else {
                 System.out.println("Valid input, please");
             }
         }
+    }
+
+    public static void checkWin(int i, int j) {
+
     }
 
 }

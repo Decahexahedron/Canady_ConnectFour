@@ -141,6 +141,9 @@ public class Canady_ConnectFour {
             } else {
                 place = 0;
             }
+            if (place == 3) {
+                System.out.println("WIN");
+            }
         }
     }
 
